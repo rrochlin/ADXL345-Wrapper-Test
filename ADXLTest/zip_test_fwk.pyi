@@ -7,7 +7,7 @@ class ZipTestBoard:
     def turn_on_ps(self, supply: str) -> None:
         """Turns on PS for provided string arg"""
         ...
-    
+
     def turn_off_ps(self, supply: str) -> None:
         """Turns off PS for provided string arg"""
         ...
@@ -18,14 +18,14 @@ class ZipTestBoard:
         and integer frequency in Hz
         """
         ...
-    
-    def i2c_cmd(self, addr: int, data: int, resp_len: int=0) -> list[int]|None:
+
+    def i2c_cmd(self, addr: int, data: int, resp_len: int = 0) -> list[int] | None:
         """
         Writes a byte list data to the provided address addr expecting 
         response of length resp_len. 0 means no response. Raises I2CError on exception
         """
         ...
-    
+
     def actuator_move(self, config: str) -> None:
         """
         function blocks the thread...
