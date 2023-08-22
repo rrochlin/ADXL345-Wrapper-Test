@@ -27,10 +27,10 @@ def validate_xyz(board: ZipTestBoard, x_range: tuple = None, y_range: tuple = No
         x = ((response[1] << 8) | response[0]) * 0.03125
         assert (x_range[0] <= x) and (x_range[1] >= x), f"x_values fall outside of range{x}"
     if y_range:
-        y = ((response[2] << 8) | response[3]) * 0.03125
+        y = ((response[3] << 8) | response[2]) * 0.03125
         assert (y_range[0] <= y) and (y_range[1] >= y), f"y_values fall outside of range {y}"
     if y_range:
-        z = ((response[4] << 8) | response[5]) * 0.03125
+        z = ((response[5] << 8) | response[4]) * 0.03125
         assert (z_range[0] <= z) and (z_range[1] >= z), f"z_values fall outside of range {z}"
     return
 
@@ -66,8 +66,8 @@ def run_and_validate_self_test(board: ZipTestBoard) -> None:
     response = board.i2c_cmd(ADXL345_READ_ADDRESS, REGISTER_X_AXIS_LSB, 6)
     test_0_xyz = [
         (response[1] << 8) | response[0],
-        (response[2] << 8) | response[3],
-        (response[4] << 8) | response[5],
+        (response[3] << 8) | response[2],
+        (response[5] << 8) | response[4],
     ]
 
     # set test bit to 1
@@ -75,8 +75,8 @@ def run_and_validate_self_test(board: ZipTestBoard) -> None:
     response = board.i2c_cmd(ADXL345_READ_ADDRESS, REGISTER_X_AXIS_LSB, 6)
     test_1_xyz = [
         (response[1] << 8) | response[0],
-        (response[2] << 8) | response[3],
-        (response[4] << 8) | response[5],
+        (response[3] << 8) | response[2],
+        (response[5] << 8) | response[4],
     ]
 
     tolerance = 0.01  # checking that results are within 0.01
